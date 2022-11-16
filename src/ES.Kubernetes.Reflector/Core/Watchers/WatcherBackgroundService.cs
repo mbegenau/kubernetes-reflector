@@ -2,10 +2,10 @@
 using ES.Kubernetes.Reflector.Core.Configuration;
 using ES.Kubernetes.Reflector.Core.Messages;
 using k8s;
+using k8s.Autorest;
 using k8s.Models;
 using MediatR;
 using Microsoft.Extensions.Options;
-using Microsoft.Rest;
 
 namespace ES.Kubernetes.Reflector.Core.Watchers;
 

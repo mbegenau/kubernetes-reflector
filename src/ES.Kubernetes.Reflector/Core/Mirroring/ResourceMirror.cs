@@ -7,11 +7,11 @@ using ES.Kubernetes.Reflector.Core.Mirroring.Constants;
 using ES.Kubernetes.Reflector.Core.Mirroring.Extensions;
 using ES.Kubernetes.Reflector.Core.Resources;
 using k8s;
+using k8s.Autorest;
 using k8s.Models;
 using MediatR;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.JsonPatch.Operations;
-using Microsoft.Rest;
 using Newtonsoft.Json;
 
 namespace ES.Kubernetes.Reflector.Core.Mirroring;
@@ -315,7 +315,7 @@ public abstract class ResourceMirror<TResource> :
         var autoReflectionList = _autoReflectionCache.GetOrAdd(resourceRef, _ => new List<KubeRef>());
 
         var matches = await OnResourceWithNameList(resourceRef.Name);
-        var namespaces = (await Client.ListNamespaceAsync(cancellationToken: cancellationToken)).Items;
+        var namespaces = (await Client.CoreV1.ListNamespaceAsync(cancellationToken: cancellationToken)).Items;
 
         foreach (var match in matches)
         {
