@@ -49,6 +49,10 @@ try
         .AddTypedClient<IKubernetes>((httpClient, s) => new Kubernetes(
             s.GetRequiredService<KubernetesClientConfiguration>(),
             httpClient))
+        .ConfigureHttpClient((httpClient) => {
+            httpClient.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("emberstack-kubernetes-reflector", "1.0"));
+            httpClient.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("(+https://github.com/emberstack/kubernetes-reflector)"));
+        })
         .ConfigurePrimaryHttpMessageHandler(s =>
             s.GetRequiredService<KubernetesClientConfiguration>().CreateDefaultHttpClientHandler());
 
