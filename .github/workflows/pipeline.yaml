@@ -28,7 +28,7 @@ jobs:
 
 
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: artifacts - prepare directories
         run: |
@@ -136,7 +136,7 @@ jobs:
           docker push ${{env.imageRepository}}:${{env.version}}-arm64v8
 
       - name: github - checkout - helm-charts
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: emberstack/helm-charts
           token:  ${{ secrets.ES_GITHUB_PAT }}
