@@ -45,13 +45,13 @@ jobs:
         run: helm template --namespace kube-system reflector .artifacts/helm/reflector-${{env.version}}.tgz > .artifacts/kubectl/reflector-${{env.version}}.yaml
 
       - name: "artifacts - upload - helm chart"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: helm
           path: .artifacts/helm
 
       - name: "artifacts - upload - kubectl manifests"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: kubectl
           path: .artifacts/kubectl
